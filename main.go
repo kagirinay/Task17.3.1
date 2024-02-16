@@ -7,13 +7,12 @@ import (
 )
 
 // Шаг наращивания счётчика
-const step int64 = 1
+const step int64 = 100
 
 // Конечное значение счетчика
 const endCounterValue int64 = 1000
 
 func main() {
-
 	var counter int64 = 0
 	var wg sync.WaitGroup
 	increment := func() {
@@ -27,6 +26,7 @@ func main() {
 	for i := 1; i <= iterationCount; i++ {
 		wg.Add(1)
 		go increment()
+		fmt.Println(i)
 	}
 	// Ожидаем поступления сигнала
 	wg.Wait()
